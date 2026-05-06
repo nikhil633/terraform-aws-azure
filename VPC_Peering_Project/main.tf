@@ -287,3 +287,84 @@ resource "aws_instance" "secondary_instance" {
 
   depends_on = [aws_vpc_peering_connection_accepter.secondary_acceptor]
 }
+
+# resource "aws_eip" "nat_eip" {
+#   domain = "vpc"
+
+#   tags = {
+#     Name = "main-nat-eip"
+#   }
+# }
+
+# resource "aws_nat_gateway" "main_nat" {
+#   allocation_id = aws_eip.nat_eip.id
+#   subnet_id     = aws_subnet.public_subnet.id
+
+#   depends_on = [aws_internet_gateway.main_igw]
+
+#   tags = {
+#     Name = "main-nat-gateway"
+#   }
+# }
+
+# resource "aws_route" "private_nat_route" {
+#   route_table_id         = aws_route_table.private_rt.id
+#   destination_cidr_block = "0.0.0.0/0"
+#   nat_gateway_id         = aws_nat_gateway.main_nat.id
+# }
+
+# resource "aws_network_acl" "public_nacl" {
+#   vpc_id = aws_vpc.main.id
+
+#   subnet_ids = [aws_subnet.public_subnet.id]
+
+#   ingress {
+#     protocol   = "-1"
+#     rule_no    = 100
+#     action     = "allow"
+#     cidr_block = "0.0.0.0/0"
+#     from_port  = 0
+#     to_port    = 0
+#   }
+
+#   egress {
+#     protocol   = "-1"
+#     rule_no    = 100
+#     action     = "allow"
+#     cidr_block = "0.0.0.0/0"
+#     from_port  = 0
+#     to_port    = 0
+#   }
+
+#   tags = {
+#     Name = "public-nacl"
+#   }
+# }
+
+# resource "aws_network_acl" "private_nacl" {
+#   vpc_id = aws_vpc.main.id
+
+#   subnet_ids = [aws_subnet.private_subnet.id]
+
+#   ingress {
+#     protocol   = "-1"
+#     rule_no    = 100
+#     action     = "allow"
+#     cidr_block = "0.0.0.0/0"
+#     from_port  = 0
+#     to_port    = 0
+#   }
+
+#   egress {
+#     protocol   = "-1"
+#     rule_no    = 100
+#     action     = "allow"
+#     cidr_block = "0.0.0.0/0"
+#     from_port  = 0
+#     to_port    = 0
+#   }
+
+#   tags = {
+#     Name = "private-nacl"
+#   }
+# }
