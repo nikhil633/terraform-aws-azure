@@ -14,5 +14,5 @@ instance_type = "t2.nano"
 
 # IMPORTANT: Create an EC2 key pair in both regions before running this demo
 # Use different key names for clarity
-primary_key_name   = "vpc-peering-demo-east"
-secondary_key_name = "vpc-peering-demo-west"
+primary_key_name   = "vpc-peering-demo-east-1"
+secondary_key_name = "vpc-peering-demo-west-1"
